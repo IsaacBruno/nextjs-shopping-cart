@@ -1,6 +1,6 @@
-export default function ProductCard() {
+export const ProductCard = () => {
   return (
-    <section>
+    <section data-testid='product-card'>
       <div className='w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden'>
         <div
           className='flex items-end justify-end h-56 w-full bg-cover'
@@ -30,4 +30,4 @@ export default function ProductCard() {
       </div>
     </section>
   );
-}
+};
