@@ -15,7 +15,9 @@ export const CartItem = ({ product }) => {
           <h3 className='text-sm text-gray-600'>{product.title}</h3>
           <div className='flex items-center mt-2'>
             <button
-              onClick={() => setQuantity(quantity - 1)}
+              onClick={() =>
+                setQuantity(quantity > 0 ? quantity - 1 : quantity)
+              }
               className='text-gray-500 focus:outline-none focus:text-gray-600'
             >
               <svg
