@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 export const CartItem = ({ product }) => {
+  const [quantity, setQuantity] = useState(1);
   return (
     <div data-testid='cart-item' className='flex justify-between mt-6'>
       <div className='flex'>
@@ -25,9 +28,12 @@ export const CartItem = ({ product }) => {
               </svg>
             </button>
             <span data-testid='quantity' className='text-gray-700 mx-2'>
-              1
+              {quantity}
             </span>
-            <button className='text-gray-500 focus:outline-none focus:text-gray-600'>
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              className='text-gray-500 focus:outline-none focus:text-gray-600'
+            >
               <svg
                 className='h-5 w-5'
                 fill='none'

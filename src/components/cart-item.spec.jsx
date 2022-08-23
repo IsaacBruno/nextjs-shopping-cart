@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { CartItem } from './cart-item';
 
 const product = {
@@ -33,7 +33,13 @@ describe('CartItem', () => {
     renderCartItem();
     expect(screen.getByTestId('quantity').textContent).toBe('1');
   });
-  it.todo('should increase quantity by 1 when second button is clicked');
+
+  it('should increase quantity by 1 when second button is clicked', () => {
+    renderCartItem();
+    const [_, increaseButton] = screen.getAllByRole('button');
+    fireEvent.click(increaseButton);
+    expect(screen.getByTestId('quantity').textContent).toBe('2');
+  });
   it.todo('should decrease quantity by 1 when first button is clicked');
   it.todo('should not go below zero in the quantity');
 });
