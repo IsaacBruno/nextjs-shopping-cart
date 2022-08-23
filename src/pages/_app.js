@@ -1,6 +1,14 @@
 import 'tailwindcss/tailwind.css';
 
+import { makeServer } from '../../miragejs/server';
 import Cart from '../components/cart';
+
+if (
+  process.env.NODE_ENV === 'development' &&
+  typeof makeServer === 'function'
+) {
+  makeServer();
+}
 
 function MyApp({ Component, pageProps }) {
   return (
