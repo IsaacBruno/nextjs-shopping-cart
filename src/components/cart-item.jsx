@@ -24,7 +24,9 @@ export const CartItem = ({ product }) => {
                 <path d='M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z'></path>
               </svg>
             </button>
-            <span className='text-gray-700 mx-2'>2</span>
+            <span data-testid='quantity' className='text-gray-700 mx-2'>
+              1
+            </span>
             <button className='text-gray-500 focus:outline-none focus:text-gray-600'>
               <svg
                 className='h-5 w-5'
