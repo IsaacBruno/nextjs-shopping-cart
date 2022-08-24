@@ -9,6 +9,7 @@ module.exports = {
     '!<rootDir>/.next/**',
     '!<rootDir>/*.config.js',
     '!<rootDir>/coverage/**',
+    '!<rootDir>/miragejs/**',
   ],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
