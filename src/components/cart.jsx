@@ -1,4 +1,4 @@
-import CartItem from './cart-item';
+import { CartItem } from './cart-item';
 
 export default function Cart() {
   return (
@@ -20,7 +20,7 @@ export default function Cart() {
         </button>
       </div>
       <hr className='my-3' />
-      <CartItem />
+      <CartItem product={{}} />
       <div className='mt-8'>
         <form className='flex items-center justify-center'>
           <input

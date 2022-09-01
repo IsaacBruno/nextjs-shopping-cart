@@ -1,4 +1,5 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Response from 'miragejs';
 import ProductList from '../pages';
 import { makeServer } from '../../miragejs/server';
@@ -51,7 +52,30 @@ describe('ProductList', () => {
     });
   });
 
-  it.todo('should filter the product list when a search is performed');
+  it('should filter the product list when a search is performed', async () => {
+    const searchTerm = 'Notebook';
+
+    server.createList('product', 2);
+    server.create('product', {
+      title: searchTerm,
+    });
+
+    renderProductList();
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('product-card')).toHaveLength(3);
+    });
+
+    const form = screen.getByRole('form');
+    const input = screen.getByRole('searchbox');
+
+    await userEvent.type(input, searchTerm);
+    await fireEvent.submit(form);
+
+    await waitFor(() => {
+      expect(screen.getAllByTestId('product-card')).toHaveLength(1);
+    });
+  });
   it.todo('should display the total quantity of products');
   it.todo('should display product (singular) when there is only 1 product');
 });
