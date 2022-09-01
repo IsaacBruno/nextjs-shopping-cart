@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
+import Response from 'miragejs';
 import ProductList from '../pages';
 import { makeServer } from '../../miragejs/server';
 
@@ -35,9 +36,22 @@ describe('ProductList', () => {
       expect(screen.getByTestId('no-products')).toBeInTheDocument();
     });
   });
-  it.todo('should render the Search component');
+
+  it('should display error message when promise rejects', async () => {
+    server.get('products', () => {
+      return new Response(500, {}, '');
+    });
+
+    renderProductList();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('server-error')).toBeInTheDocument();
+      expect(screen.queryByTestId('no-products')).toBeNull();
+      expect(screen.queryAllByTestId('product-card')).toHaveLength(0);
+    });
+  });
+
   it.todo('should filter the product list when a search is performed');
-  it.todo('should display error message when promise rejects');
   it.todo('should display the total quantity of products');
   it.todo('should display product (singular) when there is only 1 product');
 });
