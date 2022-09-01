@@ -27,7 +27,14 @@ describe('ProductList', () => {
       expect(screen.getAllByTestId('product-card')).toHaveLength(10);
     });
   });
-  it.todo('should render the no products message');
+
+  it('should render the no products message', async () => {
+    renderProductList();
+
+    await waitFor(() => {
+      expect(screen.getByTestId('no-products')).toBeInTheDocument();
+    });
+  });
   it.todo('should render the Search component');
   it.todo('should filter the product list when a search is performed');
   it.todo('should display error message when promise rejects');
